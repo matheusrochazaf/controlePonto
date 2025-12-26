@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de Horário de Saída</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>⏰ Calculador de Saída</h1>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Entrada</label>
+                    <input type="time" id="horario-entrada" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item">
+                    <label>Saída Almoço</label>
+                    <input type="time" id="horario-saida-almoco" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item">
+                    <label>Retorno Almoço</label>
+                    <input type="time" id="horario-retorno-almoco" class="input-field" onchange="calcular()">
+                </div>
+            </div>
+
+            <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+
+            <div class="resultado-grid">
+                <div class="resultado-item">
+                    <span class="label">Saída (sem HR)</span>
+                    <span id="saida-minima" class="valor">--:--</span>
+                </div>
+
+                <div class="resultado-item sucesso">
+                    <span class="label">Saída (com HR)</span>
+                    <span id="saida-maxima" class="valor">--:--</span>
+                </div>
+
+                <div class="resultado-item">
+                    <span class="label">Almoço</span>
+                    <span id="tempo-almoco" class="valor">--:--</span>
+                    <span id="validacao-almoco" class="validacao"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
