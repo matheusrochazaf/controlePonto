@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponto Flexível - 08:48</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🔄 Ponto Flexível - 08:48</h1>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Entrada</label>
+                    <input type="time" id="horario-entrada" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item"></div>
+                <div class="form-item"></div>
+            </div>
+
+            <div class="pausas-section">
+                <div class="pausas-titulo">Pausas</div>
+                <div class="form-group" id="pausa-1">
+                    <div class="form-item">
+                        <label>Saída Pausa 1</label>
+                        <input type="time" class="input-field horario-saida-pausa" onchange="calcular()">
+                    </div>
+                    <div class="form-item">
+                        <label>Retorno Pausa 1</label>
+                        <input type="time" class="input-field horario-retorno-pausa" onchange="calcular()">
+                    </div>
+                    <div class="form-item"></div>
+                </div>
+                <div id="pausas-container"></div>
+            </div>
+
+            <div class="pausas-add-container">
+                <button onclick="adicionarPausa()" class="btn-adicionar">+ Adicionar Pausa</button>
+            </div>
+
+            <div class="form-group" style="border-bottom: 2px solid var(--primary-color);">
+                <div class="form-item">
+                    <label>Saída (Final)</label>
+                    <input type="time" id="horario-saida-final" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item"></div>
+                <div class="form-item"></div>
+            </div>
+
+            <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+
+            <div class="resultado-grid">
+                <div class="resultado-item">
+                    <span class="label">Tempo de Pausa</span>
+                    <span id="tempo-pausa" class="valor">--:--:--</span>
+                </div>
+
+                <div class="resultado-item">
+                    <span class="label">Tempo Trabalhado</span>
+                    <span id="tempo-trabalhado" class="valor">--:--:--</span>
+                </div>
+
+                <div class="resultado-item sucesso">
+                    <span class="label">Diferença (08:48)</span>
+                    <span id="diferenca-jornada" class="valor">--:--:--</span>
+                    <span id="validacao-diferenca" class="validacao"></span>
+                </div>
+            </div>
+
+            <a href="ponto-flexivel.html" class="btn btn-back">← Voltar</a>
+        </div>
+    </div>
+
+    <script src="main-flexivel-0848.js"></script>
+</body>
+</html>
