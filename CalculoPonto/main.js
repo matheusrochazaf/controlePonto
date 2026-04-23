@@ -53,7 +53,7 @@ function calcular() {
 
     let validacaoAlmoco = '';
     if (tempoAlmocoMin < ALMOCO_MINIMO) {
-        validacaoAlmoco = `❌ Você fez menos tempo de almoço, o mínimo 1:12`;
+        validacaoAlmoco = `❌ Você fez menos tempo de almoço, o mínimo é 1:12`;
     } else if (tempoAlmocoMin > ALMOCO_MAXIMO) {
         validacaoAlmoco = `❌ Almoço Máximo 2:00, ultrapassou`;
     } else {
@@ -63,10 +63,11 @@ function calcular() {
     const tempoTrabalhado = (saidaAlmocoMin - entradaMin);
     
     if (tempoTrabalhado > TRABALHO_MAXIMO_PERIODO) {
-        validacaoAlmoco = `❌ Máximo 6:00 antes do almoço (trabalhou ${converterParaTempo(tempoTrabalhado)})`;
+        validacaoAlmoco = `❌ Máximo 6:00 antes do almoço, você trabalhou ${converterParaTempo(tempoTrabalhado)})`;
         document.getElementById('validacao-almoco').textContent = validacaoAlmoco;
-        document.getElementById('saida-minima').textContent = '--:--';
-        document.getElementById('saida-maxima').textContent = '--:--';
+        document.getElementById('saida-minima').textContent = '--:--:--';
+        document.getElementById('saida-maxima').textContent = '--:--:--';
+        document.getElementById('hora-extra-total').textContent = '--:--:--';
         return;
     }
 
@@ -82,11 +83,12 @@ function calcular() {
     
     const saidaMaximaFinal = Math.min(saidaMaximaMin, saidaMaximaPor6HorasMin);
     
-    // Validar se o período após almoço ultrapassa 6 horas
+    const horaExtraTotal = saidaMaximaFinal - saidaMinimaMin;
+    document.getElementById('hora-extra-total').textContent = converterParaTempo(Math.max(0, horaExtraTotal));
+    
     if (tempoRestanteMax > TRABALHO_MAXIMO_PERIODO) {
         validacaoAlmoco = `❌ Máximo 6:00 após almoço. Saída máxima: ${converterParaTempo(saidaMaximaPor6HorasMin)}`;
         document.getElementById('validacao-almoco').textContent = validacaoAlmoco;
-        document.getElementById('saida-minima').textContent = '--:--';
         document.getElementById('saida-maxima').textContent = converterParaTempo(saidaMaximaPor6HorasMin);
         return;
     }
@@ -96,9 +98,10 @@ function calcular() {
 }
 
 function limparResultados() {
-    document.getElementById('tempo-almoco').textContent = '--:--';
-    document.getElementById('saida-minima').textContent = '--:--';
-    document.getElementById('saida-maxima').textContent = '--:--';
+    document.getElementById('tempo-almoco').textContent = '--:--:--';
+    document.getElementById('saida-minima').textContent = '--:--:--';
+    document.getElementById('saida-maxima').textContent = '--:--:--';
+    document.getElementById('hora-extra-total').textContent = '--:--:--';
     document.getElementById('validacao-almoco').textContent = '';
 }
 
