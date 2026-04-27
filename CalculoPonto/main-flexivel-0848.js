@@ -120,8 +120,12 @@ function calcular() {
 
     document.getElementById('diferenca-jornada').textContent = `${sinalDiferenca} ${converterParaTempo(diferenca)}`;
 
+    const HORA_EXTRA_MAXIMA = 2 * 60;
+
     let mensagemDiferenca = '';
-    if (diferencaMin > 0) {
+    if (diferencaMin > HORA_EXTRA_MAXIMA) {
+        mensagemDiferenca = `❌ Máximo de hora extra permitido: 02:00:00`;
+    } else if (diferencaMin > 0) {
         mensagemDiferenca = `✅ Hora extra: ${converterParaTempo(diferencaMin)}`;
     } else if (diferencaMin < 0) {
         mensagemDiferenca = `⚠️ Faltou: ${converterParaTempo(diferenca)}`;
@@ -129,7 +133,9 @@ function calcular() {
         mensagemDiferenca = `✅ Jornada completa`;
     }
 
-    document.getElementById('validacao-diferenca').textContent = mensagemDiferenca;
+    const elDiferenca = document.getElementById('validacao-diferenca');
+    elDiferenca.textContent = mensagemDiferenca;
+    elDiferenca.className = (diferencaMin >= 0 && diferencaMin <= HORA_EXTRA_MAXIMA) ? 'validacao ok' : 'validacao';
 
     const LIMITE_CONTINUO = 6 * 60;
 

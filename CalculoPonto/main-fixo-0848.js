@@ -115,7 +115,7 @@ function calcular() {
     document.getElementById('saida-minima').textContent = converterParaTempo(saidaMinimaMin);
 
     // Calcular horário de saída máxima (com hora extra)
-    const HORA_EXTRA_MAXIMA = 1 * 60 + 12;
+    const HORA_EXTRA_MAXIMA = 2 * 60;
     const TRABALHO_MAXIMO_PERIODO = 6 * 60;
     
     const tempoMaximoTrabalho = JORNADA_MINUTOS + HORA_EXTRA_MAXIMA;
