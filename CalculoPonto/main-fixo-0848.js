@@ -115,7 +115,7 @@ function calcular() {
     document.getElementById('saida-minima').textContent = converterParaTempo(saidaMinimaMin);
 
     // Calcular horário de saída máxima (com hora extra)
-    const HORA_EXTRA_MAXIMA = 2 * 60;
+    const HORA_EXTRA_MAXIMA = 1 * 60 + 12;
     const TRABALHO_MAXIMO_PERIODO = 6 * 60;
     
     const tempoMaximoTrabalho = JORNADA_MINUTOS + HORA_EXTRA_MAXIMA;
@@ -130,16 +130,25 @@ function calcular() {
     document.getElementById('hora-extra-total').textContent = converterParaTempo(Math.max(0, horaExtraTotal));
     
     // Validação final
-    let validacaoAlmoco = '✅ Válido';
-    
     if (tempoRestanteMax > TRABALHO_MAXIMO_PERIODO) {
-        validacaoAlmoco = `⚠️ Máximo 6:00 de trabalho após última pausa. Saída máxima: ${converterParaTempo(saidaMaximaPor6HorasMin)}`;
         document.getElementById('saida-maxima').textContent = converterParaTempo(saidaMaximaPor6HorasMin);
     } else {
         document.getElementById('saida-maxima').textContent = converterParaTempo(saidaMaximaFinal);
     }
-    
-    document.getElementById('validacao-almoco').textContent = validacaoAlmoco;
+
+    const PAUSA_MAXIMA = 2 * 60;
+    let validacaoAlmoco;
+    if (tempoTotalPausaMin > PAUSA_MAXIMA) {
+        validacaoAlmoco = `❌ Tempo de pausa excede o máximo de 02:00:00`;
+    } else if (tempoRestanteMax > TRABALHO_MAXIMO_PERIODO) {
+        validacaoAlmoco = `⚠️ Máximo 6:00 de trabalho após última pausa. Saída máxima: ${converterParaTempo(saidaMaximaPor6HorasMin)}`;
+    } else {
+        validacaoAlmoco = `✅ Válido`;
+    }
+
+    const elAlmoco = document.getElementById('validacao-almoco');
+    elAlmoco.textContent = validacaoAlmoco;
+    elAlmoco.className = validacaoAlmoco.startsWith('✅') ? 'validacao ok' : 'validacao';
 
     const LIMITE_CONTINUO = 6 * 60;
 

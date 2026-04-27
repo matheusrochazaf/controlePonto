@@ -120,12 +120,18 @@ function calcular() {
 
     document.getElementById('diferenca-jornada').textContent = `${sinalDiferenca} ${converterParaTempo(diferenca)}`;
 
-    const HORA_EXTRA_MAXIMA = 2 * 60;
+    const PAUSA_MAXIMA = 2 * 60;
+    const elPausa = document.getElementById('validacao-pausa');
+    if (tempoTotalPausaMin > PAUSA_MAXIMA) {
+        elPausa.textContent = `❌ Tempo de pausa excede o máximo de 02:00:00`;
+        elPausa.className = 'validacao';
+    } else {
+        elPausa.textContent = `✅ Dentro do limite`;
+        elPausa.className = 'validacao ok';
+    }
 
     let mensagemDiferenca = '';
-    if (diferencaMin > HORA_EXTRA_MAXIMA) {
-        mensagemDiferenca = `❌ Máximo de hora extra permitido: 02:00:00`;
-    } else if (diferencaMin > 0) {
+    if (diferencaMin > 0) {
         mensagemDiferenca = `✅ Hora extra: ${converterParaTempo(diferencaMin)}`;
     } else if (diferencaMin < 0) {
         mensagemDiferenca = `⚠️ Faltou: ${converterParaTempo(diferenca)}`;
@@ -133,9 +139,7 @@ function calcular() {
         mensagemDiferenca = `✅ Jornada completa`;
     }
 
-    const elDiferenca = document.getElementById('validacao-diferenca');
-    elDiferenca.textContent = mensagemDiferenca;
-    elDiferenca.className = (diferencaMin >= 0 && diferencaMin <= HORA_EXTRA_MAXIMA) ? 'validacao ok' : 'validacao';
+    document.getElementById('validacao-diferenca').textContent = mensagemDiferenca;
 
     const LIMITE_CONTINUO = 6 * 60;
 
@@ -165,6 +169,7 @@ function calcular() {
 
 function limparResultados() {
     document.getElementById('tempo-pausa').textContent = '--:--:--';
+    document.getElementById('validacao-pausa').textContent = '';
     document.getElementById('tempo-trabalhado').textContent = '--:--:--';
     document.getElementById('diferenca-jornada').textContent = '--:--:--';
     document.getElementById('validacao-diferenca').textContent = '';
