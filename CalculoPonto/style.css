@@ -320,6 +320,15 @@ body {
     color: var(--warning);
 }
 
+.resultado-item .validacao:empty {
+    display: none;
+}
+
+.resultado-item .validacao.ok {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
 /* ——— DASHBOARD ——— */
 
 .dashboard-container {

@@ -140,6 +140,30 @@ function calcular() {
     }
     
     document.getElementById('validacao-almoco').textContent = validacaoAlmoco;
+
+    const LIMITE_CONTINUO = 6 * 60;
+
+    const primeiraSaidaPausaMin = converterParaMinutos(saidasPausas[0].value);
+    const tempoAntesPrimeiraPausa = primeiraSaidaPausaMin - entradaMin;
+    document.getElementById('tempo-antes-primeira-pausa').textContent = converterParaTempo(tempoAntesPrimeiraPausa);
+    const elAntes = document.getElementById('validacao-antes-primeira-pausa');
+    if (tempoAntesPrimeiraPausa > LIMITE_CONTINUO) {
+        elAntes.textContent = `⚠️ Ultrapassa 6h contínuas`;
+        elAntes.className = 'validacao';
+    } else {
+        elAntes.textContent = `✅ Dentro do limite`;
+        elAntes.className = 'validacao ok';
+    }
+
+    document.getElementById('tempo-apos-ultima-pausa').textContent = converterParaTempo(tempoRestante);
+    const elApos = document.getElementById('validacao-apos-ultima-pausa');
+    if (tempoRestante > LIMITE_CONTINUO) {
+        elApos.textContent = `⚠️ Ultrapassa 6h contínuas`;
+        elApos.className = 'validacao';
+    } else {
+        elApos.textContent = `✅ Dentro do limite`;
+        elApos.className = 'validacao ok';
+    }
 }
 
 function limparResultados() {
@@ -148,6 +172,10 @@ function limparResultados() {
     document.getElementById('saida-maxima').textContent = '--:--:--';
     document.getElementById('hora-extra-total').textContent = '--:--:--';
     document.getElementById('validacao-almoco').textContent = '';
+    document.getElementById('tempo-antes-primeira-pausa').textContent = '--:--:--';
+    document.getElementById('validacao-antes-primeira-pausa').textContent = '';
+    document.getElementById('tempo-apos-ultima-pausa').textContent = '--:--:--';
+    document.getElementById('validacao-apos-ultima-pausa').textContent = '';
 }
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -130,6 +130,31 @@ function calcular() {
     }
 
     document.getElementById('validacao-diferenca').textContent = mensagemDiferenca;
+
+    const LIMITE_CONTINUO = 6 * 60;
+
+    const primeiraSaidaPausaMin = converterParaMinutos(saidasPausas[0].value);
+    const tempoAntesPrimeiraPausa = primeiraSaidaPausaMin - entradaMin;
+    document.getElementById('tempo-antes-primeira-pausa').textContent = converterParaTempo(tempoAntesPrimeiraPausa);
+    const elAntes = document.getElementById('validacao-antes-primeira-pausa');
+    if (tempoAntesPrimeiraPausa > LIMITE_CONTINUO) {
+        elAntes.textContent = `⚠️ Ultrapassa 6h contínuas`;
+        elAntes.className = 'validacao';
+    } else {
+        elAntes.textContent = `✅ Dentro do limite`;
+        elAntes.className = 'validacao ok';
+    }
+
+    const tempoAposUltimaPausa = saidaFinalMin - ultimoRetornoMin;
+    document.getElementById('tempo-apos-ultima-pausa').textContent = converterParaTempo(tempoAposUltimaPausa);
+    const elApos = document.getElementById('validacao-apos-ultima-pausa');
+    if (tempoAposUltimaPausa > LIMITE_CONTINUO) {
+        elApos.textContent = `⚠️ Ultrapassa 6h contínuas`;
+        elApos.className = 'validacao';
+    } else {
+        elApos.textContent = `✅ Dentro do limite`;
+        elApos.className = 'validacao ok';
+    }
 }
 
 function limparResultados() {
@@ -137,6 +162,10 @@ function limparResultados() {
     document.getElementById('tempo-trabalhado').textContent = '--:--:--';
     document.getElementById('diferenca-jornada').textContent = '--:--:--';
     document.getElementById('validacao-diferenca').textContent = '';
+    document.getElementById('tempo-antes-primeira-pausa').textContent = '--:--:--';
+    document.getElementById('validacao-antes-primeira-pausa').textContent = '';
+    document.getElementById('tempo-apos-ultima-pausa').textContent = '--:--:--';
+    document.getElementById('validacao-apos-ultima-pausa').textContent = '';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
