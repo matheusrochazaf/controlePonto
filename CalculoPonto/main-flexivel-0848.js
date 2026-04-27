@@ -120,10 +120,14 @@ function calcular() {
 
     document.getElementById('diferenca-jornada').textContent = `${sinalDiferenca} ${converterParaTempo(diferenca)}`;
 
+    const PAUSA_MINIMA = 1 * 60 + 12;
     const PAUSA_MAXIMA = 2 * 60;
     const elPausa = document.getElementById('validacao-pausa');
     if (tempoTotalPausaMin > PAUSA_MAXIMA) {
         elPausa.textContent = `❌ Tempo de pausa excede o máximo de 02:00:00`;
+        elPausa.className = 'validacao';
+    } else if (tempoTotalPausaMin < PAUSA_MINIMA) {
+        elPausa.textContent = `❌ Tempo de pausa abaixo do mínimo de 01:12:00`;
         elPausa.className = 'validacao';
     } else {
         elPausa.textContent = `✅ Dentro do limite`;

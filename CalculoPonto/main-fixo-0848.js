@@ -136,10 +136,13 @@ function calcular() {
         document.getElementById('saida-maxima').textContent = converterParaTempo(saidaMaximaFinal);
     }
 
+    const PAUSA_MINIMA = 1 * 60 + 12;
     const PAUSA_MAXIMA = 2 * 60;
     let validacaoAlmoco;
     if (tempoTotalPausaMin > PAUSA_MAXIMA) {
         validacaoAlmoco = `❌ Tempo de pausa excede o máximo de 02:00:00`;
+    } else if (tempoTotalPausaMin < PAUSA_MINIMA) {
+        validacaoAlmoco = `❌ Tempo de pausa abaixo do mínimo de 01:12:00`;
     } else if (tempoRestanteMax > TRABALHO_MAXIMO_PERIODO) {
         validacaoAlmoco = `⚠️ Máximo 6:00 de trabalho após última pausa. Saída máxima: ${converterParaTempo(saidaMaximaPor6HorasMin)}`;
     } else {
