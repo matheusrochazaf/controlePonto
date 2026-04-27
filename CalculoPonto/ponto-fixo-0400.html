@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponto Fixo - 04:00</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>📌 Ponto Fixo - 04:00</h1>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Entrada</label>
+                    <input type="time" id="horario-entrada" class="input-field" onchange="calcular()">
+                </div>
+            </div>
+
+            <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+
+            <div class="resultado-grid">
+                <div class="resultado-item sucesso">
+                    <span class="label">Saída (4:00)</span>
+                    <span id="saida" class="valor">--:--:--</span>
+                </div>
+            </div>
+
+            <a href="ponto-fixo.html" class="btn btn-back">← Voltar</a>
+        </div>
+    </div>
+
+    <script src="main-fixo-0400.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponto Flexível - 04:00</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🔄 Ponto Flexível - 04:00</h1>
+
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Entrada</label>
+                    <input type="time" id="horario-entrada" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item">
+                    <label>Saída</label>
+                    <input type="time" id="horario-saida" class="input-field" onchange="calcular()">
+                </div>
+                <div class="form-item"></div>
+            </div>
+
+            <button onclick="calcular()" class="btn btn-primary">Calcular</button>
+
+            <div class="resultado-grid">
+                <div class="resultado-item">
+                    <span class="label">Tempo Trabalhado</span>
+                    <span id="tempo-trabalhado" class="valor">--:--:--</span>
+                    <span id="validacao-trabalhado" class="validacao"></span>
+                </div>
+            </div>
+
+            <a href="ponto-flexivel.html" class="btn btn-back">← Voltar</a>
+        </div>
+    </div>
+
+    <script src="main-flexivel-0400.js"></script>
+</body>
+</html>
